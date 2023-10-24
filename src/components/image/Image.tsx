@@ -5,7 +5,7 @@ interface Props {
 	alt: string;
 	src: string;
 	width: string;
-	heigth?: string;
+	height?: string;
 }
 
 interface ContainerProps {
