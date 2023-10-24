@@ -19,6 +19,7 @@ const Header: React.FC = () => {
 				alt="logo"
 				src="https://imagensemoldes.com.br/wp-content/uploads/2020/06/Movie-Logo-Cinema-PNG.png"
 				width="35px"
+				clickable={true}
 			/>
 			<Navbar items={['Todas', 'Suspense', 'Comedia', 'Sci-Fi']} />
 		</HeaderContainer>

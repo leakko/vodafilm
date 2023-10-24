@@ -6,16 +6,15 @@ interface Props {
 	src: string;
 	width: string;
 	height?: string;
+	clickable?: boolean;
 }
 
-interface ContainerProps {
-	width: string;
-	height?: string;
-}
-
-export const ImageContainer = styled.img<ContainerProps>`
+export const ImageContainer = styled.img<Props>`
 	width: ${({ width }) => width};
 	height: ${({ height, width }) => height ?? width};
+	&:hover {
+		cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
+	}
 `;
 
 export const Image: React.FC<Props> = (props) => {
