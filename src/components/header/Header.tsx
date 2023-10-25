@@ -1,29 +1,24 @@
+// src/components/Header.tsx
 import React from 'react';
 import styled from 'styled-components';
 import Image from '../image/Image';
-import Navbar from '../navbar/Navbar';
+import NavBar from '../navbar/NavBar';
+import UserMenu from '../user-menu/UserMenu';
 
 const HeaderContainer = styled.header`
-	padding: 1rem;
-	background-color: #bccbff;
-	height: 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 10px 20px;
+	background-color: #f0f0f0;
 `;
 
-const Header: React.FC = () => {
-	return (
-		<HeaderContainer>
-			<Image
-				alt="logo"
-				src="https://imagensemoldes.com.br/wp-content/uploads/2020/06/Movie-Logo-Cinema-PNG.png"
-				width="35px"
-				clickable={true}
-			/>
-			<Navbar items={['Todas', 'Suspense', 'Comedia', 'Sci-Fi']} />
-		</HeaderContainer>
-	);
-};
+const Header: React.FC = () => (
+	<HeaderContainer>
+		<Image src="/" alt="Logo" width={150} isClickable={true} href="/" />
+		<NavBar />
+		<UserMenu />
+	</HeaderContainer>
+);
 
 export default Header;

@@ -1,24 +1,26 @@
+// src/components/Image.tsx
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-	alt: string;
+interface ImageProps {
 	src: string;
-	width: string;
-	height?: string;
-	clickable?: boolean;
+	alt: string;
+	width: number;
+	height?: number;
+	isClickable?: boolean;
+	href?: string;
 }
 
-export const ImageContainer = styled.img<Props>`
-	width: ${({ width }) => width};
-	height: ${({ height, width }) => height ?? width};
-	&:hover {
-		cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
-	}
+const StyledImage = styled.img<{ width: number; height: number }>`
+	width: ${(props) => props.width}px;
+	height: ${(props) => props.height}px;
 `;
 
-export const Image: React.FC<Props> = (props) => {
-	return <ImageContainer {...props} />;
+const StyledAnchor = styled.a``;
+
+const Image: React.FC<ImageProps> = ({ src, alt, width, height = width, isClickable, href }) => {
+	const image = <StyledImage src={src} alt={alt} width={width} height={height} />;
+	return isClickable && href ? <StyledAnchor href={href}>{image}</StyledAnchor> : image;
 };
 
 export default Image;
