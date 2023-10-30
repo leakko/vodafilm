@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Home: React.FC = () => {
+const NotFound: React.FC = () => {
 	return (
 		<section>
 			<h1>Welcome to My App</h1>
-			<p>This is the home page</p>
+			<p>This is the NotFound page</p>
 		</section>
 	);
 };
 
-export default Home;
+export default NotFound;

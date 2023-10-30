@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import menuItems from '../../assets/mocks/menu.json';
 
@@ -29,7 +30,7 @@ const MenuItem = styled.li`
 	}
 `;
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
 	text-decoration: none;
 	color: ${({ theme }) => theme.colors.secondary};
 	font-weight: bold;
@@ -40,7 +41,7 @@ const NavBar: React.FC = () => (
 		<MenuList>
 			{menuItems.map((item: MenuItemType) => (
 				<MenuItem key={item.id}>
-					<MenuLink href={item.route}>{item.title}</MenuLink>
+					<MenuLink to={item.route}>{item.title}</MenuLink>
 				</MenuItem>
 			))}
 		</MenuList>
