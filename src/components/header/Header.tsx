@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import movieLogo from '../../assets/img/movie.png';
 import Image from '../image/Image';
 import NavBar from '../navbar/NavBar';
 import UserMenu from '../user-menu/UserMenu';
@@ -14,7 +15,7 @@ const HeaderContainer = styled.header`
 
 const Header: React.FC = () => (
 	<HeaderContainer>
-		<Image src="/" alt="Logo" width={150} isClickable={true} href="/" />
+		<Image src={movieLogo} alt="Logo" width={30} isClickable={true} href="/" />
 		<NavBar />
 		<UserMenu />
 	</HeaderContainer>
