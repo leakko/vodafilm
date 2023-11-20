@@ -1,0 +1,8 @@
+const CONSTANTS = {
+	['API-BASE-URL']: 'https://api.themoviedb.org/3',
+	['API-KEY']: 'd7898662cd1a160e65b095496406418c',
+	['API-READ-KEY']:
+		'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNzg5ODY2MmNkMWExNjBlNjViMDk1NDk2NDA2NDE4YyIsInN1YiI6IjY1NGE0NTUwNDFhNTYxMzM2YzVlNDIxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XD5Q43iF6Lgzz44HZBxGGQ5fsqcMGceHtlkM-imk-QE',
+};
+
+export default CONSTANTS;
