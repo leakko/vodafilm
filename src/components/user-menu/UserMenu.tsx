@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface DropdownProps {
-	isOpen: boolean;
+	$isOpen: boolean;
 }
 
 const Wrapper = styled.div`
@@ -19,7 +19,7 @@ const UserIcon = styled.div`
 `;
 
 const Dropdown = styled.nav<DropdownProps>`
-	display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+	display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
 	flex-direction: column;
 	position: absolute;
 	top: 100%;
@@ -44,13 +44,13 @@ const DropdownItem = styled.li`
 `;
 
 const UserMenu: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleMenu = () => setIsOpen((prev) => !prev);
+	const [$isOpen, set$isOpen] = useState(false);
+	const toggleMenu = () => set$isOpen((prev) => !prev);
 
 	return (
 		<Wrapper onClick={toggleMenu}>
 			<UserIcon>Bienvenido, Iván</UserIcon>
-			<Dropdown isOpen={isOpen}>
+			<Dropdown $isOpen={$isOpen}>
 				<DropdownList>
 					<DropdownItem>Favoritos</DropdownItem>
 					<DropdownItem>Logout</DropdownItem>
