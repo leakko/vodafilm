@@ -12,7 +12,6 @@ const getMoviesCategories = async () => {
 
 	try {
 		const response = await axios.request(options);
-		console.log(response);
 		return response;
 	} catch (error) {
 		return Promise.reject(new Error(error as string));
