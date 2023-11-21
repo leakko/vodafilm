@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = (env, arg) => {
 	const isProduction = arg.mode === 'production';
-  	const dotenvFilename = isProduction ? './.env.prod' : './.env.dev';
+	const dotenvFilename = isProduction ? './.env.prod' : './.env.dev';
 
 	return {
 		entry: './src/index.tsx',
@@ -56,5 +56,5 @@ module.exports = (env, arg) => {
 			port: 3000,
 			historyApiFallback: true,
 		},
-	}
+	};
 };
