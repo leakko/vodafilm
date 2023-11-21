@@ -1,13 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import CONSTANTS from '../assets/constants';
 
 const getMoviesCategories = async () => {
 	const options: AxiosRequestConfig = {
 		method: 'get',
-		url: `${CONSTANTS['API-BASE-URL']}/genre/movie/list?language=en`,
+		url: `${process.env.API_BASE_URL}/genre/movie/list?language=en`,
 		headers: {
 			accept: 'application/json',
-			Authorization: `Bearer ${CONSTANTS['API-READ-KEY']}`,
+			Authorization: `Bearer ${process.env.API_READ_KEY}`,
 		},
 	};
 
