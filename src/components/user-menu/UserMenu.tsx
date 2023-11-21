@@ -49,7 +49,7 @@ const UserMenu: React.FC = () => {
 
 	return (
 		<Wrapper onClick={toggleMenu}>
-			<UserIcon>Bienvenido, Iván</UserIcon>
+			<UserIcon>Bienvenido, Marcos</UserIcon>
 			<Dropdown $isOpen={isOpen}>
 				<DropdownList>
 					<DropdownItem>Favoritos</DropdownItem>
