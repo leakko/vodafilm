@@ -44,13 +44,13 @@ const DropdownItem = styled.li`
 `;
 
 const UserMenu: React.FC = () => {
-	const [$isOpen, set$isOpen] = useState(false);
-	const toggleMenu = () => set$isOpen((prev) => !prev);
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleMenu = () => setIsOpen((prev) => !prev);
 
 	return (
 		<Wrapper onClick={toggleMenu}>
 			<UserIcon>Bienvenido, Iván</UserIcon>
-			<Dropdown $isOpen={$isOpen}>
+			<Dropdown $isOpen={isOpen}>
 				<DropdownList>
 					<DropdownItem>Favoritos</DropdownItem>
 					<DropdownItem>Logout</DropdownItem>
