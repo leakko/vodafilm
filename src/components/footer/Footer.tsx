@@ -5,7 +5,7 @@ const StyledFooter = styled.footer`
 	max-width: 1000px;
 	margin: 25px auto;
 	text-align: center;
-`
+`;
 
 const Footer: React.FC = () => {
 	return (
