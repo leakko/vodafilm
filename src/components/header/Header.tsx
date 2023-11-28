@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import movieLogo from '../../assets/img/movie.png';
 import Image from '../image/Image';
-import NavBar from '../navbar/NavBar';
+import NavBar from '../navbar/Navbar';
 import UserMenu from '../user-menu/UserMenu';
 
 const HeaderContainer = styled.header`
