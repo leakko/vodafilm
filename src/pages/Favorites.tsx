@@ -41,7 +41,7 @@ const Favorites: React.FC = () => {
 
 	return (
 		<section style={{ margin: '0px 25px' }}>
-			{movies && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites movies</h1>}
+			{!!movies.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites movies</h1>}
 			<CardsList>
 				{movies &&
 					movies.map((movie) => (
@@ -55,7 +55,7 @@ const Favorites: React.FC = () => {
 						</Card>
 					))}
 			</CardsList>
-			{shows && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites TV Shows</h1>}
+			{!!shows.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites TV Shows</h1>}
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
