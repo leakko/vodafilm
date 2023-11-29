@@ -27,15 +27,17 @@ export const FavoritesProvider: React.FC<Props> = ({ children }) => {
 	const favoritesContextValue = useMemo(() => {
 		return {
 			favorites,
-			addFavorite: (newItem: Movie | Show) =>
+			addFavorite: (newItem: Movie | Show) => {
+                newItem = { ...newItem, isFavorite: true }
 				setFavorites((items) => {
 					if (items.find((item) => item.id === newItem.id)) {
 						return items;
 					} else {
 						return [...items, newItem];
 					}
-				}),
-			removeFavorite: (itemToRemove: Movie | Show) =>
+				})
+            },
+			removeFavorite: (itemToRemove: Movie | Show) => 
 				setFavorites((items) => items.filter((item) => item.id !== itemToRemove.id)),
 		};
 	}, [favorites, setFavorites]);
