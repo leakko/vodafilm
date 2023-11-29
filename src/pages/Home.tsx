@@ -56,12 +56,12 @@ const Home: React.FC = () => {
 			movies: (moviesData?.data as PopularsApiResponse<Movie>)?.results.slice(0, 4).map((movie) => ({
 				...movie,
 				poster_path: getImgUrl(movie.poster_path),
-				isFavorite: !!favorites.find(favorite => favorite.id === movie.id),
+				isFavorite: !!favorites.find((favorite) => favorite.id === movie.id),
 			})),
 			shows: (showsData?.data as PopularsApiResponse<Show>)?.results.slice(0, 4).map((show) => ({
 				...show,
 				poster_path: getImgUrl(show.poster_path),
-				isFavorite: !!favorites.find(favorite => favorite.id === show.id),
+				isFavorite: !!favorites.find((favorite) => favorite.id === show.id),
 			})),
 		};
 		return response;
