@@ -55,7 +55,7 @@ const Favorites: React.FC = () => {
 						</Card>
 					))}
 			</CardsList>
-			{shows && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Top TV Shows</h1>}
+			{shows && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites TV Shows</h1>}
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
