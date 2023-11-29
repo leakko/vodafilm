@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface DropdownProps {
@@ -36,6 +37,7 @@ const DropdownList = styled.ul`
 `;
 
 const DropdownItem = styled.li`
+	color: black;
 	padding: 10px 20px;
 	cursor: pointer;
 	&:hover {
@@ -52,7 +54,7 @@ const UserMenu: React.FC = () => {
 			<UserIcon>Bienvenido, Marcos</UserIcon>
 			<Dropdown $isOpen={isOpen}>
 				<DropdownList>
-					<DropdownItem>Favoritos</DropdownItem>
+					<Link to={'/favorites'} style={{ textDecoration: 'none' }}><DropdownItem>Favoritos</DropdownItem></Link>
 					<DropdownItem>Logout</DropdownItem>
 				</DropdownList>
 			</Dropdown>

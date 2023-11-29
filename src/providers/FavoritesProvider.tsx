@@ -1,17 +1,19 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
+import { Movie } from '../models/movie';
+import { Show } from '../models/show';
 
 interface Props {
 	children: React.ReactNode;
 }
 
 interface FavoritesContext {
-	favoritesIds: number[];
-	addFavorite: (id: number) => void;
-	removeFavorite: (id: number) => void;
+	favorites: (Movie | Show)[];
+	addFavorite: (item: Movie | Show) => void;
+	removeFavorite: (item: Movie | Show) => void;
 }
 
 const initialContext: FavoritesContext = {
-	favoritesIds: [],
+	favorites: [],
 	addFavorite: () => {},
 	removeFavorite: () => {},
 };
@@ -21,13 +23,19 @@ const FavoritesContext = createContext<FavoritesContext>(initialContext);
 export const useFavorites = () => useContext(FavoritesContext);
 
 export const FavoritesProvider: React.FC<Props> = ({ children }) => {
-	const [favoritesIds, setFavoritesIds] = useState<number[]>([]);
+	const [favorites, setFavorites] = useState<(Movie | Show)[]>([]);
 	const favoritesContextValue = useMemo(() => {
 		return {
-			favoritesIds,
-			addFavorite: (movieId: number) => setFavoritesIds((ids) => [...ids, movieId]),
-			removeFavorite: (movieId: number) => setFavoritesIds((ids) => ids.filter((id) => id !== movieId)),
+			favorites,
+			addFavorite: (newItem: Movie | Show) => setFavorites((items) => {
+                if (items.find(item => item.id === newItem.id)) {
+                    return items
+                } else {
+                    return [...items, newItem]
+                } 
+            }),
+			removeFavorite: (itemToRemove: Movie | Show) => setFavorites((items) => items.filter((item) => item.id !== itemToRemove.id)),
 		};
-	}, [favoritesIds, setFavoritesIds]);
+	}, [favorites, setFavorites]);
 	return <FavoritesContext.Provider value={favoritesContextValue}>{children}</FavoritesContext.Provider>;
 };

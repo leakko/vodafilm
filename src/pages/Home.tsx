@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 		refetchOnWindowFocus: false,
 	});
 
-	const { favoritesIds, addFavorite, removeFavorite } = useFavorites();
+	const { favorites, addFavorite, removeFavorite } = useFavorites();
 
 	const { movies, shows } = useMemo(() => {
 		const getImgUrl = (endpoint: string) => `https://image.tmdb.org/t/p/w200${endpoint}`;
@@ -56,16 +56,16 @@ const Home: React.FC = () => {
 			movies: (moviesData?.data as PopularsApiResponse<Movie>)?.results.slice(0, 4).map((movie) => ({
 				...movie,
 				poster_path: getImgUrl(movie.poster_path),
-				isFavorite: favoritesIds.includes(movie.id),
+				isFavorite: !!favorites.find(favorite => favorite.id === movie.id),
 			})),
 			shows: (showsData?.data as PopularsApiResponse<Show>)?.results.slice(0, 4).map((show) => ({
 				...show,
 				poster_path: getImgUrl(show.poster_path),
-				isFavorite: favoritesIds.includes(show.id),
+				isFavorite: !!favorites.find(favorite => favorite.id === show.id),
 			})),
 		};
 		return response;
-	}, [moviesData, showsData, favoritesIds]);
+	}, [moviesData, showsData, favorites]);
 
 	if (areMoviesLoading || areShowsLoading) return <div>Loading...</div>;
 	if (didMoviesFailed || didShowsFailed) return <div>Error: {moviesError?.toString()}</div>;
@@ -79,7 +79,11 @@ const Home: React.FC = () => {
 						<Card key={movie.id}>
 							<HeartImg
 								src={movie.isFavorite ? fullHeart : emptyHeart}
-								onClick={movie.isFavorite ? () => removeFavorite(movie.id) : () => addFavorite(movie.id)}
+								onClick={
+									movie.isFavorite 
+									? () => removeFavorite({...movie, isFavorite: false}) 
+									: () => addFavorite({...movie, isFavorite: true})
+								}
 							/>
 							<PosterImg src={movie.poster_path} />
 							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
@@ -93,7 +97,11 @@ const Home: React.FC = () => {
 						<Card key={show.id}>
 							<HeartImg
 								src={show.isFavorite ? fullHeart : emptyHeart}
-								onClick={show.isFavorite ? () => removeFavorite(show.id) : () => addFavorite(show.id)}
+								onClick={
+									show.isFavorite 
+									? () => removeFavorite({...show, isFavorite: false}) 
+									: () => addFavorite({...show, isFavorite: true})
+								}
 							/>
 							<PosterImg src={show.poster_path} />
 							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
