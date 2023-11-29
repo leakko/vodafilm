@@ -5,11 +5,11 @@ import emptyHeart from '../assets/img/heart_empty.png';
 import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
-import { useFavorites } from '../providers/FavoritesProvider';
-import getPopulars from '../queries/get-populars';
 import { Movie } from '../models/movie';
 import { PopularsApiResponse } from '../models/populars-api-response';
 import { Show } from '../models/show';
+import { useFavorites } from '../providers/FavoritesProvider';
+import getPopulars from '../queries/get-populars';
 
 const HeartImg = styled.img`
 	width: 25px;
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
 	const {
 		isLoading: areMoviesLoading,
 		isError: didMoviesFailed,
-		data : moviesData,
+		data: moviesData,
 		error: moviesError,
 	} = useQuery({
 		queryKey: ['populars', 'movies'],
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
 				poster_path: getImgUrl(show.poster_path),
 				isFavorite: favoritesIds.includes(show.id),
 			})),
-		}
+		};
 		return response;
 	}, [moviesData, showsData, favoritesIds]);
 

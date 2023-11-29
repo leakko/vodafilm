@@ -4,4 +4,3 @@ export interface PopularsApiResponse<T> {
 	total_pages: number;
 	total_results: number;
 }
-

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { PopularsApiResponse } from '../models/populars-api-response';
 import { Movie } from '../models/movie';
+import { PopularsApiResponse } from '../models/populars-api-response';
 import { Show } from '../models/show';
 
 const getPopulars = async (isMovie: boolean) => {
