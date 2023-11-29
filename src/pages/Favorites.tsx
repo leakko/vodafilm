@@ -37,11 +37,11 @@ const Favorites: React.FC = () => {
 	}, [favorites]);
 
 	if (!movies?.length && !shows.length)
-		return <h1 style={{ textAlign: 'center' }}>You don`t have any favorite movie or TV Show</h1>;
+		return <h1 style={{ textAlign: 'center', marginTop: '40px' }}>You don&#39;t have any favorite movie or TV Show</h1>;
 
 	return (
 		<section style={{ margin: '0px 25px' }}>
-			{!!movies.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites movies</h1>}
+			{!!movies.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorite movies</h1>}
 			<CardsList>
 				{movies &&
 					movies.map((movie) => (
@@ -55,7 +55,7 @@ const Favorites: React.FC = () => {
 						</Card>
 					))}
 			</CardsList>
-			{!!shows.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites TV Shows</h1>}
+			{!!shows.length && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorite TV Shows</h1>}
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
