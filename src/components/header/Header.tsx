@@ -15,7 +15,9 @@ const HeaderContainer = styled.header`
 
 const Header: React.FC = () => (
 	<HeaderContainer>
-		<Image src={movieLogo} alt="Logo" width={30} isClickable={true} href="/" />
+		<div style={{ width: '150px' }}>
+			<Image src={movieLogo} alt="Logo" width={30} isClickable={true} href="/" />
+		</div>
 		<NavBar />
 		<UserMenu />
 	</HeaderContainer>

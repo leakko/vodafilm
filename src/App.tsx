@@ -5,13 +5,16 @@ import { ThemeProvider } from 'styled-components';
 import queryClient from './clients/query-client';
 import { router } from './routes';
 import { GlobalStyle, theme } from './styles';
+import { FavoritesProvider } from './providers/FavoritesProvider';
 
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<QueryClientProvider client={queryClient}>
-				<GlobalStyle />
-				<RouterProvider router={router} />
+				<FavoritesProvider>
+					<GlobalStyle />
+					<RouterProvider router={router} />
+				</FavoritesProvider>
 			</QueryClientProvider>
 		</ThemeProvider>
 	);
