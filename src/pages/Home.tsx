@@ -1,8 +1,26 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import styled from 'styled-components';
+import emptyHeart from '../assets/img/heart_empty.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
 import getPopulars from '../queries/get-populars';
+
+const HeartImg = styled.img`
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	right: 5%;
+	top: 5%;
+
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+const PosterImg = styled.img`
+	border-radius: 20px 20px 0 0;
+`;
 
 const Home: React.FC = () => {
 	const { isLoading, isError, data, error } = useQuery({
@@ -24,7 +42,8 @@ const Home: React.FC = () => {
 				{movies &&
 					movies.map((movie) => (
 						<Card key={movie.id}>
-							<img style={{ borderRadius: '20px 20px 0 0' }} src={movie.poster_path} />
+							<HeartImg src={emptyHeart} />
+							<PosterImg src={movie.poster_path} />
 							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
 						</Card>
 					))}

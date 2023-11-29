@@ -14,6 +14,7 @@ const StyledCard = styled.li`
 	align-items: center;
 	width: fit-content;
 	background-color: #f0f0f0f0;
+	position: relative;
 `;
 
 const Card: React.FC<Props> = ({ children }) => {
