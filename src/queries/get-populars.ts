@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { MoviesPage } from '../models/populars-api-response';
+import { PopularsApiResponse } from '../models/populars-api-response';
+import { Movie } from '../models/movie';
+import { Show } from '../models/show';
 
 const getPopulars = async (isMovie: boolean) => {
 	const options: AxiosRequestConfig = {
@@ -12,7 +14,7 @@ const getPopulars = async (isMovie: boolean) => {
 	};
 
 	try {
-		const response = await axios.request<MoviesPage>(options);
+		const response = await axios.request<PopularsApiResponse<Movie> | PopularsApiResponse<Show>>(options);
 		return response;
 	} catch (error) {
 		return Promise.reject(new Error(error as string));

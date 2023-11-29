@@ -7,6 +7,9 @@ import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
 import { useFavorites } from '../providers/FavoritesProvider';
 import getPopulars from '../queries/get-populars';
+import { Movie } from '../models/movie';
+import { PopularsApiResponse } from '../models/populars-api-response';
+import { Show } from '../models/show';
 
 const HeartImg = styled.img`
 	width: 25px;
@@ -28,7 +31,7 @@ const Home: React.FC = () => {
 	const {
 		isLoading: areMoviesLoading,
 		isError: didMoviesFailed,
-		data: moviesData,
+		data : moviesData,
 		error: moviesError,
 	} = useQuery({
 		queryKey: ['populars', 'movies'],
@@ -49,18 +52,19 @@ const Home: React.FC = () => {
 
 	const { movies, shows } = useMemo(() => {
 		const getImgUrl = (endpoint: string) => `https://image.tmdb.org/t/p/w200${endpoint}`;
-		return {
-			movies: moviesData?.data.results.slice(0, 4).map((movie) => ({
+		const response: { movies: Movie[]; shows: Show[] } = {
+			movies: (moviesData?.data as PopularsApiResponse<Movie>)?.results.slice(0, 4).map((movie) => ({
 				...movie,
 				poster_path: getImgUrl(movie.poster_path),
 				isFavorite: favoritesIds.includes(movie.id),
 			})),
-			shows: showsData?.data.results.slice(0, 4).map((show) => ({
+			shows: (showsData?.data as PopularsApiResponse<Show>)?.results.slice(0, 4).map((show) => ({
 				...show,
 				poster_path: getImgUrl(show.poster_path),
 				isFavorite: favoritesIds.includes(show.id),
 			})),
-		};
+		}
+		return response;
 	}, [moviesData, showsData, favoritesIds]);
 
 	if (areMoviesLoading || areShowsLoading) return <div>Loading...</div>;
@@ -92,7 +96,7 @@ const Home: React.FC = () => {
 								onClick={show.isFavorite ? () => removeFavorite(show.id) : () => addFavorite(show.id)}
 							/>
 							<PosterImg src={show.poster_path} />
-							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.title}</p>
+							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
 						</Card>
 					))}
 			</CardsList>
