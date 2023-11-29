@@ -26,7 +26,6 @@ const PosterImg = styled.img`
 
 const Favorites: React.FC = () => {
 	const { favorites, addFavorite, removeFavorite } = useFavorites();
-	console.log(favorites);
 
 	const { movies, shows } = useMemo(() => {
 		const response: { movies: Movie[]; shows: Show[] } = {
