@@ -5,7 +5,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-const StyledCardList = styled.li`
+const StyledCardList = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;

@@ -5,7 +5,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-const StyledCard = styled.div`
+const StyledCard = styled.li`
 	border-radius: 20px;
 	box-shadow: 3px 3px 3px grey;
 	display: flex;
