@@ -51,10 +51,12 @@ const UserMenu: React.FC = () => {
 
 	return (
 		<Wrapper onClick={toggleMenu}>
-			<UserIcon>Bienvenido, Marcos</UserIcon>
+			<UserIcon>Wellcome, Marcos</UserIcon>
 			<Dropdown $isOpen={isOpen}>
 				<DropdownList>
-					<Link to={'/favorites'} style={{ textDecoration: 'none' }}><DropdownItem>Favoritos</DropdownItem></Link>
+					<Link to={'/favorites'} style={{ textDecoration: 'none' }}>
+						<DropdownItem>Favorites</DropdownItem>
+					</Link>
 					<DropdownItem>Logout</DropdownItem>
 				</DropdownList>
 			</Dropdown>

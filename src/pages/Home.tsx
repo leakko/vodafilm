@@ -56,12 +56,12 @@ const Home: React.FC = () => {
 			movies: (moviesData?.data as PopularsApiResponse<Movie>)?.results.slice(0, 4).map((movie) => ({
 				...movie,
 				poster_path: getImgUrl(movie.poster_path),
-				isFavorite: !!favorites.find(favorite => favorite.id === movie.id),
+				isFavorite: !!favorites.find((favorite) => favorite.id === movie.id),
 			})),
 			shows: (showsData?.data as PopularsApiResponse<Show>)?.results.slice(0, 4).map((show) => ({
 				...show,
 				poster_path: getImgUrl(show.poster_path),
-				isFavorite: !!favorites.find(favorite => favorite.id === show.id),
+				isFavorite: !!favorites.find((favorite) => favorite.id === show.id),
 			})),
 		};
 		return response;
@@ -80,9 +80,9 @@ const Home: React.FC = () => {
 							<HeartImg
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={
-									movie.isFavorite 
-									? () => removeFavorite({...movie, isFavorite: false}) 
-									: () => addFavorite({...movie, isFavorite: true})
+									movie.isFavorite
+										? () => removeFavorite({ ...movie, isFavorite: false })
+										: () => addFavorite({ ...movie, isFavorite: true })
 								}
 							/>
 							<PosterImg src={movie.poster_path} />
@@ -98,9 +98,9 @@ const Home: React.FC = () => {
 							<HeartImg
 								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={
-									show.isFavorite 
-									? () => removeFavorite({...show, isFavorite: false}) 
-									: () => addFavorite({...show, isFavorite: true})
+									show.isFavorite
+										? () => removeFavorite({ ...show, isFavorite: false })
+										: () => addFavorite({ ...show, isFavorite: true })
 								}
 							/>
 							<PosterImg src={show.poster_path} />

@@ -26,21 +26,22 @@ const PosterImg = styled.img`
 
 const Favorites: React.FC = () => {
 	const { favorites, addFavorite, removeFavorite } = useFavorites();
-    console.log(favorites);
+	console.log(favorites);
 
 	const { movies, shows } = useMemo(() => {
 		const response: { movies: Movie[]; shows: Show[] } = {
-			movies: favorites.filter(movie => (movie as Movie).title) as Movie[],
-			shows: favorites.filter(show => (show as Show).name) as Show[],
+			movies: favorites.filter((movie) => (movie as Movie).title) as Movie[],
+			shows: favorites.filter((show) => (show as Show).name) as Show[],
 		};
 		return response;
 	}, [favorites]);
 
-	if (!movies?.length && !shows.length ) return <h1 style={{ textAlign: 'center' }}>You don`t have any favorite movie or TV Show</h1>;
+	if (!movies?.length && !shows.length)
+		return <h1 style={{ textAlign: 'center' }}>You don`t have any favorite movie or TV Show</h1>;
 
 	return (
 		<section style={{ margin: '0px 25px' }}>
-			{ movies && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites movies</h1> }
+			{movies && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Your favorites movies</h1>}
 			<CardsList>
 				{movies &&
 					movies.map((movie) => (
@@ -54,7 +55,7 @@ const Favorites: React.FC = () => {
 						</Card>
 					))}
 			</CardsList>
-			{ shows && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Top TV Shows</h1> }
+			{shows && <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Top TV Shows</h1>}
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
