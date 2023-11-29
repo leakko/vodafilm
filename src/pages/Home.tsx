@@ -57,7 +57,7 @@ const Home: React.FC = () => {
 	if (didMoviesFailed || didShowsFailed) return <div>Error: {moviesError?.toString()}</div>;
 
 	return (
-		<section>
+		<section style={{ margin: '0px 25px' }}>
 			<h1 style={{ textAlign: 'center', marginTop: '40px' }}>Top Movies</h1>
 			<CardsList>
 				{movies &&

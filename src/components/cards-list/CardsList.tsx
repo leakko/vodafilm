@@ -12,6 +12,7 @@ const StyledCardList = styled.ul`
 	column-gap: 20px;
 	row-gap: 20px;
 	justify-content: center;
+	padding-inline-start: 0;
 `;
 
 const CardsList: React.FC<Props> = ({ children }) => {
