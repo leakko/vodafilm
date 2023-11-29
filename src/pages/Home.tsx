@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 import emptyHeart from '../assets/img/heart_empty.png';
-import fullHeart  from '../assets/img/heart_full.png';
+import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
-import getPopulars from '../queries/get-populars';
 import { useFavorites } from '../providers/FavoritesProvider';
+import getPopulars from '../queries/get-populars';
 
 const HeartImg = styled.img`
 	width: 25px;
@@ -50,10 +50,16 @@ const Home: React.FC = () => {
 	const { movies, shows } = useMemo(() => {
 		const getImgUrl = (endpoint: string) => `https://image.tmdb.org/t/p/w200${endpoint}`;
 		return {
-			movies: moviesData?.data.results
-				.slice(0, 4)
-				.map((movie) => ({ ...movie, poster_path: getImgUrl(movie.poster_path), isFavorite: favoritesIds.includes(movie.id) })),
-			shows: showsData?.data.results.slice(0, 4).map((show) => ({ ...show, poster_path: getImgUrl(show.poster_path),isFavorite: favoritesIds.includes(show.id) })),
+			movies: moviesData?.data.results.slice(0, 4).map((movie) => ({
+				...movie,
+				poster_path: getImgUrl(movie.poster_path),
+				isFavorite: favoritesIds.includes(movie.id),
+			})),
+			shows: showsData?.data.results.slice(0, 4).map((show) => ({
+				...show,
+				poster_path: getImgUrl(show.poster_path),
+				isFavorite: favoritesIds.includes(show.id),
+			})),
 		};
 	}, [moviesData, showsData, favoritesIds]);
 
@@ -67,8 +73,8 @@ const Home: React.FC = () => {
 				{movies &&
 					movies.map((movie) => (
 						<Card key={movie.id}>
-							<HeartImg 
-								src={ movie.isFavorite ? fullHeart : emptyHeart}
+							<HeartImg
+								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie.id) : () => addFavorite(movie.id)}
 							/>
 							<PosterImg src={movie.poster_path} />
@@ -82,7 +88,7 @@ const Home: React.FC = () => {
 					shows.map((show) => (
 						<Card key={show.id}>
 							<HeartImg
-								src={ show.isFavorite ? fullHeart : emptyHeart}
+								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={show.isFavorite ? () => removeFavorite(show.id) : () => addFavorite(show.id)}
 							/>
 							<PosterImg src={show.poster_path} />
