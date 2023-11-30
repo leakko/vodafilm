@@ -12,7 +12,9 @@ interface FavoritesContext {
 	removeFavorite: (item: Movie | Show) => void;
 }
 
-const storedFavorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites') as string) : [];
+const storedFavorites = localStorage.getItem('favorites')
+	? JSON.parse(localStorage.getItem('favorites') as string)
+	: [];
 
 const initialContext: FavoritesContext = {
 	favorites: storedFavorites,
@@ -46,6 +48,6 @@ export const FavoritesProvider: React.FC<Props> = ({ children }) => {
 	}, [favorites, setFavorites]);
 	useEffect(() => {
 		setFavorites(storedFavorites);
-	}, [])
+	}, []);
 	return <FavoritesContext.Provider value={favoritesContextValue}>{children}</FavoritesContext.Provider>;
 };
