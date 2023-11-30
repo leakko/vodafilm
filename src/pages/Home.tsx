@@ -37,6 +37,7 @@ const Home: React.FC = () => {
 		queryKey: ['populars', 'movies'],
 		queryFn: () => getPopulars(true),
 		refetchOnWindowFocus: false,
+		refetchOnMount: false,
 	});
 	const {
 		isLoading: areShowsLoading,
@@ -46,6 +47,7 @@ const Home: React.FC = () => {
 		queryKey: ['populars', 'shows'],
 		queryFn: () => getPopulars(false),
 		refetchOnWindowFocus: false,
+		refetchOnMount: false,
 	});
 
 	const { favorites, addFavorite, removeFavorite } = useFavorites();
