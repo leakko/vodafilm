@@ -11,11 +11,13 @@ interface SelectorProps {
 }
 
 const StyledSelector = styled.li<SelectorProps>`
+	list-style: none;
 	padding: 10px;
 	background-color: ${({ $selected }) => ($selected ? '#747272ee' : '#b1aeaeec')};
 	color: white;
 	border-radius: 25px;
 	direction: ltr;
+	text-align: start;
 	&:hover {
 		cursor: pointer;
 	}

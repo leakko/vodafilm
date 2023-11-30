@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MovieCategory } from '../../models/movies-categories';
 import { ShowCategory } from '../../models/shows-categories';
-import Selector from '../Selector/selector';
+import Selector from '../selector/selector';
 
 interface Props {
 	categories: MovieCategory[] | ShowCategory[];
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const StyledCategoriesMenu = styled.ul`
-	width: 150px;
+	width: 200px;
 	list-style: none;
 	display: flex;
 	flex-direction: column;

@@ -4,9 +4,10 @@ import CategoriesMenu from '../components/lateral-menu/CategoriesMenu';
 import { MovieCategoriesResponse, MovieCategory } from '../models/movies-categories';
 import { ShowCategoriesResponse, ShowCategory } from '../models/shows-categories';
 import getCategories from '../queries/get-categories';
+import Selector from '../components/selector/selector';
 
 const Categories: React.FC = () => {
-	const [typeOfItem] = useState<'movie' | 'show'>('movie');
+	const [typeOfItem, setTypeOfItem] = useState<'movie' | 'show'>('movie');
 	const [category, setCategory] = useState<MovieCategory | ShowCategory>({ id: 28, name: 'Action' });
 	const {
 		isLoading: areMovieCategoriesLoading,
@@ -51,6 +52,10 @@ const Categories: React.FC = () => {
 				Best {category.name.toLocaleLowerCase()} {typeOfItem === 'movie' ? 'movies' : 'shows'}
 			</h1>
 			<section>
+			<ul style={{ display: 'flex', columnGap: '15px', paddingLeft: '0' }}>
+					<Selector selected={ typeOfItem === 'movie' } onClick={() => setTypeOfItem('movie')}>Movies</Selector>
+					<Selector selected={ typeOfItem === 'show' } onClick={() => setTypeOfItem('show')}>Shows</Selector>
+				</ul>
 				<CategoriesMenu
 					categories={typeOfItem === 'movie' ? movieCategories : showCategories}
 					setCategory={(cat: MovieCategory | ShowCategory) => setCategory(cat)}
