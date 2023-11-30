@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Category: React.FC = () => {
+const Categories: React.FC = () => {
 	return (
 		<section>
 			<h1>Welcome to My App</h1>
@@ -9,4 +9,4 @@ const Category: React.FC = () => {
 	);
 };
 
-export default Category;
+export default Categories;

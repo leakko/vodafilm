@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import Favorites from '../pages/Favorites';
 const Home = React.lazy(() => import('../pages/Home'));
-const Category = React.lazy(() => import('../pages/Category'));
+const Categories = React.lazy(() => import('../pages/Categories'));
 const Detail = React.lazy(() => import('../pages/Detail'));
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -17,8 +17,8 @@ export const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
-				path: 'category',
-				element: <Category />,
+				path: 'categories',
+				element: <Categories />,
 			},
 			{
 				path: 'detail',
