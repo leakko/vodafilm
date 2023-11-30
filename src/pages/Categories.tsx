@@ -13,7 +13,7 @@ const Categories: React.FC = () => {
 		isError: didMovieCategoriesFailed,
 		data: MovieCategoriesData,
 	} = useQuery({
-		queryKey: ['populars', 'shows'],
+		queryKey: ['categories', 'movies'],
 		queryFn: () => getCategories(true),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
@@ -23,7 +23,7 @@ const Categories: React.FC = () => {
 		isError: didShowCategoriesFailed,
 		data: showCategoriesData,
 	} = useQuery({
-		queryKey: ['populars', 'shows'],
+		queryKey: ['categories', 'shows'],
 		queryFn: () => getCategories(false),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
