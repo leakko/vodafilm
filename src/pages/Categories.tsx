@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import CategoriesMenu from '../components/lateral-menu/CategoriesMenu';
+import Selector from '../components/selector/selector';
 import { MovieCategoriesResponse, MovieCategory } from '../models/movies-categories';
 import { ShowCategoriesResponse, ShowCategory } from '../models/shows-categories';
 import getCategories from '../queries/get-categories';
-import Selector from '../components/selector/selector';
 
 const Categories: React.FC = () => {
 	const [typeOfItem, setTypeOfItem] = useState<'movie' | 'show'>('movie');
@@ -52,9 +52,13 @@ const Categories: React.FC = () => {
 				Best {category.name.toLocaleLowerCase()} {typeOfItem === 'movie' ? 'movies' : 'shows'}
 			</h1>
 			<section>
-			<ul style={{ display: 'flex', columnGap: '15px', paddingLeft: '0' }}>
-					<Selector selected={ typeOfItem === 'movie' } onClick={() => setTypeOfItem('movie')}>Movies</Selector>
-					<Selector selected={ typeOfItem === 'show' } onClick={() => setTypeOfItem('show')}>Shows</Selector>
+				<ul style={{ display: 'flex', columnGap: '15px', paddingLeft: '0' }}>
+					<Selector selected={typeOfItem === 'movie'} onClick={() => setTypeOfItem('movie')}>
+						Movies
+					</Selector>
+					<Selector selected={typeOfItem === 'show'} onClick={() => setTypeOfItem('show')}>
+						Shows
+					</Selector>
 				</ul>
 				<CategoriesMenu
 					categories={typeOfItem === 'movie' ? movieCategories : showCategories}
