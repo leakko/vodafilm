@@ -69,8 +69,9 @@ const Home: React.FC = () => {
 		return response;
 	}, [moviesData, showsData, favorites]);
 
-	if (areMoviesLoading || areShowsLoading) return <div>Loading...</div>;
-	if (didMoviesFailed || didShowsFailed) return <div>Error: {moviesError?.toString()}</div>;
+	if (areMoviesLoading || areShowsLoading) return <p style={{ textAlign: 'center', marginTop: '40px' }}>Loading...</p>;
+	if (didMoviesFailed || didShowsFailed)
+		return <p style={{ textAlign: 'center', marginTop: '40px' }}>Error: {moviesError?.toString()}</p>;
 
 	return (
 		<section style={{ margin: '0px 25px' }}>
