@@ -53,7 +53,7 @@ module.exports = (env, arg) => {
 			static: {
 				directory: path.join(__dirname, 'dist'),
 			},
-			compress: true,
+			compress: false,
 			port: 3000,
 			historyApiFallback: true,
 		},
