@@ -1,4 +1,4 @@
-export interface PopularsApiResponse<T> {
+export interface TmdbApiResponse<T> {
 	page: number;
 	results: T[];
 	total_pages: number;

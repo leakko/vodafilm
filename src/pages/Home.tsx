@@ -6,7 +6,7 @@ import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
 import { Movie } from '../models/movie';
-import { PopularsApiResponse } from '../models/populars-api-response';
+import { TmdbApiResponse } from '../models/populars-api-response';
 import { Show } from '../models/show';
 import { useFavorites } from '../providers/FavoritesProvider';
 import getPopulars from '../queries/get-populars';
@@ -55,12 +55,12 @@ const Home: React.FC = () => {
 	const { movies, shows } = useMemo(() => {
 		const getImgUrl = (endpoint: string) => `https://image.tmdb.org/t/p/w200${endpoint}`;
 		const response: { movies: Movie[]; shows: Show[] } = {
-			movies: (moviesData?.data as PopularsApiResponse<Movie>)?.results?.slice(0, 4).map((movie) => ({
+			movies: (moviesData?.data as TmdbApiResponse<Movie>)?.results?.slice(0, 4).map((movie) => ({
 				...movie,
 				poster_path: getImgUrl(movie.poster_path),
 				isFavorite: !!favorites.find((favorite) => favorite.id === movie.id),
 			})),
-			shows: (showsData?.data as PopularsApiResponse<Show>)?.results?.slice(0, 4).map((show) => ({
+			shows: (showsData?.data as TmdbApiResponse<Show>)?.results?.slice(0, 4).map((show) => ({
 				...show,
 				poster_path: getImgUrl(show.poster_path),
 				isFavorite: !!favorites.find((favorite) => favorite.id === show.id),
