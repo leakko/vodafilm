@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MovieCategory } from '../../models/movies-categories';
 import { ShowCategory } from '../../models/shows-categories';
-import Selector from '../selector/selector';
+import SelectorButton from '../selector-button/SelectorButton';
 
 interface Props {
 	categories: MovieCategory[] | ShowCategory[];
@@ -30,12 +30,12 @@ const CategoriesMenu: React.FC<Props> = ({ categories, setCategory, selectedCate
 			<h2 style={{ textAlign: 'center', width: '150px' }}>Categories</h2>
 			<StyledCategoriesMenu>
 				{categories.map((category) => (
-					<Selector
+					<SelectorButton
 						key={category.id}
 						onClick={() => setCategory(category)}
 						selected={category.id === selectedCategory.id}>
 						{category.name}
-					</Selector>
+					</SelectorButton>
 				))}
 			</StyledCategoriesMenu>
 		</>

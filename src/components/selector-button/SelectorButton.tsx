@@ -10,7 +10,7 @@ interface SelectorProps {
 	$selected: boolean;
 }
 
-const StyledSelector = styled.li<SelectorProps>`
+const StyledSelectorButton = styled.li<SelectorProps>`
 	list-style: none;
 	padding: 10px;
 	background-color: ${({ $selected }) => ($selected ? '#747272ee' : '#b1aeaeec')};
@@ -23,12 +23,12 @@ const StyledSelector = styled.li<SelectorProps>`
 	}
 `;
 
-const Selector: React.FC<Props> = ({ children, selected, ...props }) => {
+const SelectorButton: React.FC<Props> = ({ children, selected, ...props }) => {
 	return (
-		<StyledSelector $selected={selected} {...props}>
+		<StyledSelectorButton $selected={selected} {...props}>
 			{children}
-		</StyledSelector>
+		</StyledSelectorButton>
 	);
 };
 
-export default Selector;
+export default SelectorButton;

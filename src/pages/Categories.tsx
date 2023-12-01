@@ -6,7 +6,7 @@ import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
 import CategoriesMenu from '../components/lateral-menu/CategoriesMenu';
-import Selector from '../components/selector/selector';
+import Selector from '../components/selector-button/SelectorButton';
 import { Movie } from '../models/movie';
 import { MovieCategoriesResponse, MovieCategory } from '../models/movies-categories';
 import { TmdbApiResponse } from '../models/populars-api-response';
