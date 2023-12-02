@@ -45,12 +45,14 @@ const Categories: React.FC = () => {
 		queryFn: () => getCategories(typeOfItem === 'movie'),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
+		staleTime: 1000 * 60 * 10
 	});
 	const { isLoading: areItemsByGenreLoading, data: itemsByGenreData } = useQuery({
 		queryKey: [typeOfItem, 'genre', category.id],
 		queryFn: () => getByGenre(typeOfItem === 'movie', category.id),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
+		staleTime: 1000 * 60 * 10
 	});
 
 	useEffect(()=> {
