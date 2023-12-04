@@ -14,6 +14,7 @@ const StyledDialog = styled.dialog`
 	height: 80vh;
 	max-width: 1000px;
 	top: 50px;
+	text-align: center;
 `;
 
 const Dialog: React.FC<props> = ({ children, open, onCloseClick }) => {
@@ -34,7 +35,9 @@ const Dialog: React.FC<props> = ({ children, open, onCloseClick }) => {
 			{createPortal(
 				<StyledDialog ref={dialog}>
 					<>
-						<div onClick={() => onCloseClick()} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+						<div
+							onClick={() => onCloseClick()}
+							style={{ display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
 							Cerrar
 						</div>
 						{children}

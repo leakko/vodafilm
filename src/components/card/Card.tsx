@@ -15,6 +15,9 @@ const StyledCard = styled.li`
 	width: fit-content;
 	background-color: #f0f0f0f0;
 	position: relative;
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const Card: React.FC<Props> = ({ children }) => {

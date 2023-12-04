@@ -30,6 +30,8 @@ const PosterImg = styled.img`
 
 const Home: React.FC = () => {
 	const [openModal, setOpenModal] = useState(false);
+	const [openItem, setOpenItem] = useState<Movie | Show>();
+	const [typeOfItem, setTypeOfItem] = useState<'movie' | 'show'>();
 
 	const {
 		isLoading: areMoviesLoading,
@@ -74,6 +76,12 @@ const Home: React.FC = () => {
 		return response;
 	}, [moviesData, showsData, favorites]);
 
+	const onItemClicked = (item: Movie | Show) => {
+		setOpenModal(true);
+		setOpenItem(item);
+		setTypeOfItem((item as Movie).title ? 'movie' : 'show');
+	};
+
 	if (areMoviesLoading || areShowsLoading) return <p style={{ textAlign: 'center', marginTop: '40px' }}>Loading...</p>;
 	if (didMoviesFailed || didShowsFailed)
 		return <p style={{ textAlign: 'center', marginTop: '40px' }}>Error: {moviesError?.toString()}</p>;
@@ -89,7 +97,7 @@ const Home: React.FC = () => {
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie) : () => addFavorite(movie)}
 							/>
-							<div onClick={() => setOpenModal(true)}>
+							<div onClick={() => onItemClicked(movie)}>
 								<PosterImg src={movie.poster_path} />
 								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
 							</div>
@@ -105,7 +113,7 @@ const Home: React.FC = () => {
 								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={show.isFavorite ? () => removeFavorite(show) : () => addFavorite(show)}
 							/>
-							<div onClick={() => setOpenModal(true)}>
+							<div onClick={() => onItemClicked(show)}>
 								<PosterImg src={show.poster_path} />
 								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
 							</div>
@@ -113,7 +121,26 @@ const Home: React.FC = () => {
 					))}
 			</CardsList>
 			<Dialog open={openModal} onCloseClick={() => setOpenModal(false)}>
-				hello world
+				<>
+					<img src={`https://image.tmdb.org/t/p/w200${openItem?.poster_path}`}></img>
+					{typeOfItem === 'movie' ? (
+						<>
+							<h2>Title</h2>
+							<p>{(openItem as Movie)?.title}</p>
+						</>
+					) : (
+						<>
+							<h2>Name</h2>
+							<p>{(openItem as Show)?.name}</p>
+						</>
+					)}
+					<h2>Popularity</h2>
+					<p>{openItem?.popularity}</p>
+					<h2>Rate</h2>
+					<p>{openItem?.vote_average}</p>
+					<h2>Overview</h2>
+					<p>{openItem?.overview}</p>
+				</>
 			</Dialog>
 		</section>
 	);
