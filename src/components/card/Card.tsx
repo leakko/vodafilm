@@ -45,12 +45,12 @@ const Card: React.FC<Props> = ({ children, item, typeOfItem }) => {
 							<p>{(item as Show)?.name}</p>
 						</>
 					)}
+					<h2>Overview</h2>
+					<p>{item?.overview}</p>
 					<h2>Popularity</h2>
 					<p>{item?.popularity}</p>
 					<h2>Rate</h2>
 					<p>{item?.vote_average}</p>
-					<h2>Overview</h2>
-					<p>{item?.overview}</p>
 				</>
 			</Dialog>
 		</>
