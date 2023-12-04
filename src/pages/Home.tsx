@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 import emptyHeart from '../assets/img/heart_empty.png';
 import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
+import Dialog from '../components/dialog/Dialog';
 import { Movie } from '../models/movie';
 import { TmdbApiResponse } from '../models/populars-api-response';
 import { Show } from '../models/show';
@@ -28,6 +29,8 @@ const PosterImg = styled.img`
 `;
 
 const Home: React.FC = () => {
+	const [openModal, setOpenModal] = useState(false);
+
 	const {
 		isLoading: areMoviesLoading,
 		isError: didMoviesFailed,
@@ -86,8 +89,10 @@ const Home: React.FC = () => {
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie) : () => addFavorite(movie)}
 							/>
-							<PosterImg src={movie.poster_path} />
-							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
+							<div onClick={() => setOpenModal(true)}>
+								<PosterImg src={movie.poster_path} />
+								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
+							</div>
 						</Card>
 					))}
 			</CardsList>
@@ -100,11 +105,16 @@ const Home: React.FC = () => {
 								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={show.isFavorite ? () => removeFavorite(show) : () => addFavorite(show)}
 							/>
-							<PosterImg src={show.poster_path} />
-							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
+							<div onClick={() => setOpenModal(true)}>
+								<PosterImg src={show.poster_path} />
+								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
+							</div>
 						</Card>
 					))}
 			</CardsList>
+			<Dialog open={openModal} onCloseClick={() => setOpenModal(false)}>
+				hello world
+			</Dialog>
 		</section>
 	);
 };
