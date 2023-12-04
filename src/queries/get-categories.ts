@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { ShowCategoriesResponse } from '../models/shows-categories';
 import { MovieCategoriesResponse } from '../models/movies-categories';
+import { ShowCategoriesResponse } from '../models/shows-categories';
 
 const getCategories = async (isMovie: boolean) => {
 	const options: AxiosRequestConfig = {
@@ -13,8 +13,8 @@ const getCategories = async (isMovie: boolean) => {
 	};
 
 	try {
-		const response = isMovie 
-			? await axios.request<MovieCategoriesResponse>(options) 
+		const response = isMovie
+			? await axios.request<MovieCategoriesResponse>(options)
 			: await axios.request<ShowCategoriesResponse>(options);
 		return response;
 	} catch (error) {

@@ -45,28 +45,28 @@ const Categories: React.FC = () => {
 		queryFn: () => getCategories(typeOfItem === 'movie'),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
-		staleTime: 1000 * 60 * 10
+		staleTime: 1000 * 60 * 10,
 	});
 	const { isLoading: areItemsByGenreLoading, data: itemsByGenreData } = useQuery({
 		queryKey: [typeOfItem, 'genre', category.id],
 		queryFn: () => getByGenre(typeOfItem === 'movie', category.id),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
-		staleTime: 1000 * 60 * 10
+		staleTime: 1000 * 60 * 10,
 	});
 
-	useEffect(()=> {
+	useEffect(() => {
 		setCategory(itemCategoriesData?.data?.genres[0] ?? { id: 28, name: 'Action' });
-	}, [itemCategoriesData])
+	}, [itemCategoriesData]);
 
 	const itemsByGenre = useMemo(() => {
 		const getImgUrl = (endpoint: string) => `https://image.tmdb.org/t/p/w200${endpoint}`;
-		return itemsByGenreData?.data?.results?.slice(0, 6).map(item => ({
+		return itemsByGenreData?.data?.results?.slice(0, 6).map((item) => ({
 			...item,
-				poster_path: getImgUrl(item.poster_path),
-				isFavorite: !!favorites.find((favorite) => favorite.id === item.id),
-		}))
-	}, [itemsByGenreData, favorites])
+			poster_path: getImgUrl(item.poster_path),
+			isFavorite: !!favorites.find((favorite) => favorite.id === item.id),
+		}));
+	}, [itemsByGenreData, favorites]);
 
 	const onTypeOfItemSelected = (typeOfItem: 'movie' | 'show') => {
 		setTypeOfItem(typeOfItem);
@@ -104,9 +104,7 @@ const Categories: React.FC = () => {
 					</h1>
 					<div style={{ width: '100%', height: '85vh', overflowY: 'auto' }}>
 						<CardsList>
-							{( areItemsByGenreLoading ) && (
-								<h2 style={{ textAlign: 'center' }}>Loading...</h2>
-							)}
+							{areItemsByGenreLoading && <h2 style={{ textAlign: 'center' }}>Loading...</h2>}
 							{itemsByGenre?.map((item: Movie | Show) => (
 								<Card key={item.id}>
 									<HeartImg

@@ -38,7 +38,7 @@ const Home: React.FC = () => {
 		queryFn: () => getPopulars(true),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
-		staleTime: 1000 * 60 * 10
+		staleTime: 1000 * 60 * 10,
 	});
 	const {
 		isLoading: areShowsLoading,
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 		queryFn: () => getPopulars(false),
 		refetchOnWindowFocus: false,
 		refetchOnMount: false,
-		staleTime: 1000 * 60 * 10
+		staleTime: 1000 * 60 * 10,
 	});
 
 	const { favorites, addFavorite, removeFavorite } = useFavorites();
