@@ -1,11 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 import emptyHeart from '../assets/img/heart_empty.png';
 import fullHeart from '../assets/img/heart_full.png';
 import Card from '../components/card/Card';
 import CardsList from '../components/cards-list/CardsList';
-import Dialog from '../components/dialog/Dialog';
 import { Movie } from '../models/movie';
 import { TmdbApiResponse } from '../models/populars-api-response';
 import { Show } from '../models/show';
@@ -29,10 +28,6 @@ const PosterImg = styled.img`
 `;
 
 const Home: React.FC = () => {
-	const [openModal, setOpenModal] = useState(false);
-	const [openItem, setOpenItem] = useState<Movie | Show>();
-	const [typeOfItem, setTypeOfItem] = useState<'movie' | 'show'>();
-
 	const {
 		isLoading: areMoviesLoading,
 		isError: didMoviesFailed,
@@ -76,12 +71,6 @@ const Home: React.FC = () => {
 		return response;
 	}, [moviesData, showsData, favorites]);
 
-	const onItemClicked = (item: Movie | Show) => {
-		setOpenModal(true);
-		setOpenItem(item);
-		setTypeOfItem((item as Movie).title ? 'movie' : 'show');
-	};
-
 	if (areMoviesLoading || areShowsLoading) return <p style={{ textAlign: 'center', marginTop: '40px' }}>Loading...</p>;
 	if (didMoviesFailed || didShowsFailed)
 		return <p style={{ textAlign: 'center', marginTop: '40px' }}>Error: {moviesError?.toString()}</p>;
@@ -92,15 +81,13 @@ const Home: React.FC = () => {
 			<CardsList>
 				{movies &&
 					movies.map((movie) => (
-						<Card key={movie.id}>
+						<Card key={movie.id} item={movie} typeOfItem={'movie'}>
 							<HeartImg
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie) : () => addFavorite(movie)}
 							/>
-							<div onClick={() => onItemClicked(movie)}>
-								<PosterImg src={movie.poster_path} />
-								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
-							</div>
+							<PosterImg src={movie.poster_path} />
+							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
 						</Card>
 					))}
 			</CardsList>
@@ -108,40 +95,16 @@ const Home: React.FC = () => {
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
-						<Card key={show.id}>
+						<Card key={show.id} item={show} typeOfItem={'show'}>
 							<HeartImg
 								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={show.isFavorite ? () => removeFavorite(show) : () => addFavorite(show)}
 							/>
-							<div onClick={() => onItemClicked(show)}>
-								<PosterImg src={show.poster_path} />
-								<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
-							</div>
+							<PosterImg src={show.poster_path} />
+							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{show.name}</p>
 						</Card>
 					))}
 			</CardsList>
-			<Dialog open={openModal} onCloseClick={() => setOpenModal(false)}>
-				<>
-					<img src={`https://image.tmdb.org/t/p/w200${openItem?.poster_path}`}></img>
-					{typeOfItem === 'movie' ? (
-						<>
-							<h2>Title</h2>
-							<p>{(openItem as Movie)?.title}</p>
-						</>
-					) : (
-						<>
-							<h2>Name</h2>
-							<p>{(openItem as Show)?.name}</p>
-						</>
-					)}
-					<h2>Popularity</h2>
-					<p>{openItem?.popularity}</p>
-					<h2>Rate</h2>
-					<p>{openItem?.vote_average}</p>
-					<h2>Overview</h2>
-					<p>{openItem?.overview}</p>
-				</>
-			</Dialog>
 		</section>
 	);
 };

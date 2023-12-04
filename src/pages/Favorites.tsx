@@ -44,7 +44,7 @@ const Favorites: React.FC = () => {
 			<CardsList>
 				{movies &&
 					movies.map((movie) => (
-						<Card key={movie.id}>
+						<Card key={movie.id} item={movie} typeOfItem="movie">
 							<HeartImg
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie) : () => addFavorite(movie)}
@@ -58,7 +58,7 @@ const Favorites: React.FC = () => {
 			<CardsList>
 				{shows &&
 					shows.map((show) => (
-						<Card key={show.id}>
+						<Card key={show.id} item={show} typeOfItem="show">
 							<HeartImg
 								src={show.isFavorite ? fullHeart : emptyHeart}
 								onClick={show.isFavorite ? () => removeFavorite(show) : () => addFavorite(show)}

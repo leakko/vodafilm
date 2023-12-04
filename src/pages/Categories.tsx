@@ -106,7 +106,7 @@ const Categories: React.FC = () => {
 						<CardsList>
 							{areItemsByGenreLoading && <h2 style={{ textAlign: 'center' }}>Loading...</h2>}
 							{itemsByGenre?.map((item: Movie | Show) => (
-								<Card key={item.id}>
+								<Card key={item.id} item={item} typeOfItem={(item as Movie).title ? 'movie' : 'show'}>
 									<HeartImg
 										src={item.isFavorite ? fullHeart : emptyHeart}
 										onClick={item.isFavorite ? () => removeFavorite(item) : () => addFavorite(item)}

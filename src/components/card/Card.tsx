@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Movie } from '../../models/movie';
+import { Show } from '../../models/show';
+import Dialog from '../dialog/Dialog';
 
 interface Props {
 	children: React.ReactNode;
+	typeOfItem: 'movie' | 'show';
+	item: Movie | Show;
 }
 
 const StyledCard = styled.li`
@@ -20,8 +25,36 @@ const StyledCard = styled.li`
 	}
 `;
 
-const Card: React.FC<Props> = ({ children }) => {
-	return <StyledCard>{children}</StyledCard>;
+const Card: React.FC<Props> = ({ children, item, typeOfItem }) => {
+	const [openModal, setOpenModal] = useState(false);
+
+	return (
+		<>
+			<StyledCard onClick={() => setOpenModal(true)}>{children}</StyledCard>
+			<Dialog open={openModal} onCloseClick={() => setOpenModal(false)}>
+				<>
+					<img src={`https://image.tmdb.org/t/p/w200${item?.poster_path}`}></img>
+					{typeOfItem === 'movie' ? (
+						<>
+							<h2>Title</h2>
+							<p>{(item as Movie)?.title}</p>
+						</>
+					) : (
+						<>
+							<h2>Name</h2>
+							<p>{(item as Show)?.name}</p>
+						</>
+					)}
+					<h2>Popularity</h2>
+					<p>{item?.popularity}</p>
+					<h2>Rate</h2>
+					<p>{item?.vote_average}</p>
+					<h2>Overview</h2>
+					<p>{item?.overview}</p>
+				</>
+			</Dialog>
+		</>
+	);
 };
 
 export default Card;
