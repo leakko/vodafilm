@@ -28,9 +28,15 @@ const StyledCard = styled.li`
 const Card: React.FC<Props> = ({ children, item, typeOfItem }) => {
 	const [openModal, setOpenModal] = useState(false);
 
+	const onOpenClick = (e: React.MouseEvent) => {
+		if(!(e.target as HTMLElement).classList.contains('heart') ) {
+			setOpenModal(true);
+		}
+	}
+
 	return (
 		<>
-			<StyledCard onClick={() => setOpenModal(true)}>{children}</StyledCard>
+			<StyledCard onClick={onOpenClick}>{children}</StyledCard>
 			<Dialog open={openModal} onCloseClick={() => setOpenModal(false)}>
 				<>
 					<img src={`https://image.tmdb.org/t/p/w200${item?.poster_path}`}></img>

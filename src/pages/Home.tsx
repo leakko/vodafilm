@@ -85,6 +85,7 @@ const Home: React.FC = () => {
 							<HeartImg
 								src={movie.isFavorite ? fullHeart : emptyHeart}
 								onClick={movie.isFavorite ? () => removeFavorite(movie) : () => addFavorite(movie)}
+								className='heart'
 							/>
 							<PosterImg src={movie.poster_path} />
 							<p style={{ maxWidth: '200px', textAlign: 'center' }}>{movie.title}</p>
