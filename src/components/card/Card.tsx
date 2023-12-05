@@ -29,10 +29,10 @@ const Card: React.FC<Props> = ({ children, item, typeOfItem }) => {
 	const [openModal, setOpenModal] = useState(false);
 
 	const onOpenClick = (e: React.MouseEvent) => {
-		if(!(e.target as HTMLElement).classList.contains('heart') ) {
+		if (!(e.target as HTMLElement).classList.contains('heart')) {
 			setOpenModal(true);
 		}
-	}
+	};
 
 	return (
 		<>
